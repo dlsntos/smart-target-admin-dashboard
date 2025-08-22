@@ -16,7 +16,7 @@ function App() {
             <SideBar />
 
             {/* Main Dashboard Content */}
-            <main className="w-full">
+            <main className="h-full w-full">
               {/* Dashboard Top-bar*/}
               <TopBar />
               <Routes>
