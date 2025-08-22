@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 function SideBar() {
   return (
     <div className="fixed h-full w-64 bg-blue-400">
