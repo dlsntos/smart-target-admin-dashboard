@@ -1,6 +1,7 @@
 import { Routes, Route} from 'react-router-dom';
 import SideBar from "./pages/global/SideBar";
 import TopBar from "./pages/global/TopBar";
+import Dashboard from '.';
 
 function App() {
   return (
@@ -8,16 +9,18 @@ function App() {
       <Route
         path="/*"
         element={
+          // Main App container
           <div className="relative h-screen box-border flex bg-gray-800">
-            {/*Main app container*/}
-            <SideBar />
             {/* Dashboard Left Nav-Sidebar */}
+            <SideBar />
 
             {/* Main Dashboard Content */}
-
             <main className="main-content">
-              <TopBar />
               {/* Dashboard Top-bar*/}
+              <TopBar />
+              <Routes>
+                <Route path="/" element={<Dashboard />}/>
+              </Routes>
             </main>
           </div>
         }
