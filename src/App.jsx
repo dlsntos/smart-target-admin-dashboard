@@ -3,14 +3,16 @@ import TopBar from "./pages/global/TopBar";
 
 function App() {
   return (
-    <div className="h-screen box-border flex bg-gray-800">{/*Main app container*/}
-      <SideBar />{/* Dashboard Left Nav-Sidebar */}
-      
+    <div className="h-screen box-border flex bg-gray-800">
+      {/*Main app container*/}
+      <SideBar />
+      {/* Dashboard Left Nav-Sidebar */}
+
       {/* Main Dashboard Content */}
 
       <main className="main-content">
-        
-        <TopBar />{/* Dashboard Top-bar*/}
+        <TopBar />
+        {/* Dashboard Top-bar*/}
       </main>
     </div>
   );
