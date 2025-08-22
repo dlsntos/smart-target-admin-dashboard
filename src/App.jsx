@@ -11,18 +11,20 @@ function App() {
         path="/*"
         element={
           // Main App container
-          <div className="relative h-screen w-screen box-border flex bg-gray-800">
+          <div className="relative h-screen w-screen box-border flex bg-gray-800 overflow-hidden">
             {/* Dashboard Left Nav-Sidebar */}
             <SideBar />
 
             {/* Main Dashboard Content */}
-            <main className="h-full w-full">
+            <main className="flex flex-col h-full w-full">
               {/* Dashboard Top-bar*/}
               <TopBar />
-              <Routes>
-                <Route path="/" element={<Dashboard />}/>
-                <Route path="/ad-performance" element={<AdPerformance />} />
-              </Routes>
+              <div className="flex-1 overflow-auto">
+                <Routes>
+                  <Route path="/" element={<Dashboard />}/>
+                  <Route path="/ad-performance" element={<AdPerformance />} />
+                </Routes>
+              </div>
             </main>
           </div>
         }
