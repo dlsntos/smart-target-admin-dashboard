@@ -1,7 +1,11 @@
 import { NavLink } from "react-router-dom";
+import logo from '../../assets/images/indu-logo-transparent.png';
+
 function SideBar() {
   return (
     <div className="fixed h-full w-64 bg-gray-700 overflow-hidden shadow-outline">
+			<img src={logo} />
+			{/* Brand logo */}
       <nav>
         <ul className="flex-1 p-3">
           <li>
