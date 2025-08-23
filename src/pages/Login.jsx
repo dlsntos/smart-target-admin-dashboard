@@ -12,9 +12,14 @@ function Login() {
     navigate("/dashboard");
   };
   return (
+		//Login wrapper
     <div className="h-screen w-screen bg-gray-800">
+			{/* Login contents container */}
       <div className="h-full w-full flex flex-col justify-center items-center">
+				{/* Brand logo */}
 				<img src={logo} className="h-[100px] w-[300px]"/>
+				
+				{/* Login forms container*/}
         <form  className="flex flex-col mt-5 h-[500px] w-[300px] gap-2" 
 							 onSubmit={handleSubmit}
 				>
