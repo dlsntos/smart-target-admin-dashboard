@@ -1,14 +1,18 @@
 import { Routes, Route} from 'react-router-dom';
 import SideBar from "./pages/global/SideBar";
 import TopBar from "./pages/global/TopBar";
+import Login from './pages/Login';
 import Dashboard from '.';
 import AdPerformance from './pages/dashboard/AdPerformance';
 
 function App() {
   return (
     <Routes>
+      <Route 
+        path='/'
+        element={<Login />}/>
       <Route
-        path="/*"
+        path="/dashboard/*"
         element={
           // Main App container
           <div className="relative h-screen w-screen box-border flex bg-gray-800 overflow-hidden">
