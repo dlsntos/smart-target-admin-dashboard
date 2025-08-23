@@ -11,9 +11,9 @@ function Login() {
     navigate("/dashboard");
   };
   return (
-    <div className="h-screen w-screen bg-blue-300">
+    <div className="h-screen w-screen bg-gray-700">
       <div className="h-full w-full flex justify-center">
-        <form  className="flex flex-col mt-20 h-[500px] w-[300px] bg-red-400" 
+        <form  className="flex flex-col mt-20 h-[500px] w-[300px] gap-2" 
 							 onSubmit={handleSubmit}
 				>
           <label>
