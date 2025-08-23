@@ -11,8 +11,8 @@ function Login() {
     navigate("/dashboard");
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="h-screen w-screen flex justify-center items-start bg-red-300">
+      <form onSubmit={handleSubmit} className="flex flex-col w-1/4 mt-40 p-3">
         <label>
           <span>Email</span>
         </label>
@@ -29,7 +29,7 @@ function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <div>
+        <div className="flex justify-center">
           <button type="submit">Login</button>
         </div>
       </form>
