@@ -42,7 +42,12 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className="flex justify-center">
-            <button type="submit">Login</button>
+            <button
+							className="px-16 py-2 mt-8 bg-gray-400 text-lg text-gray-800 border border-gray-400 rounded-md 
+												 hover:bg-gray-600 hover:border-gray-200 hover:text-gray-100" 
+							type="submit">
+								Login
+						</button>
           </div>
         </form>
       </div>
