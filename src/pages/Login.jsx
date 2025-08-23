@@ -24,7 +24,7 @@ function Login() {
 							 onSubmit={handleSubmit}
 				>
           <label>
-            <span>Email</span>
+            <span className="text-gray-300">Email</span>
           </label>
           <input
 						className="p-1"
@@ -33,7 +33,7 @@ function Login() {
             onChange={(e) => setEmail(e.target.value)}
           />
           <label>
-            <span>Password</span>
+            <span className="text-gray-300">Password</span>
           </label>
           <input
 						className="p-1"
