@@ -1,7 +1,13 @@
 import React, {useState} from 'react';
+import React, { useNavigate } from "react-router-dom";
 function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		navigate("/*");
+	}
   return (
 		<div>
 			<form>
