@@ -27,6 +27,7 @@ function Login() {
             <span>Email</span>
           </label>
           <input
+						className="p-1"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -35,6 +36,7 @@ function Login() {
             <span>Password</span>
           </label>
           <input
+						className="p-1"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
