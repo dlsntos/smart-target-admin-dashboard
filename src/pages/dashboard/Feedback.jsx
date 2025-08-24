@@ -23,7 +23,7 @@ function Feedback() {
       email: "realread9do@gmail.com",
       message:
         "Medyo nakalilito sa umpisa kung saan makikita yung cart, pero once nakita ko na, smooth na yung checkout.",
-      date: "2024-06-02",
+      date: "2025-06-02",
     },
   ];
 
@@ -32,7 +32,7 @@ function Feedback() {
   const [selectedMonth, setSelectedMonth] = useState("");
   const [selectedDay, setSelectedDay] = useState("");
   const [year, setYear] = useState("");
-  const feedbackPerPage = 5;
+  const feedbackPerPage = 4;
 
   // Static months and days
   const months = [
