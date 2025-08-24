@@ -27,15 +27,100 @@ function Feedback() {
     },
   ];
 
+  // State for pagination and filters
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedMonth, setSelectedMonth] = useState("");
+  const [selectedDay, setSelectedDay] = useState("");
+  const [year, setYear] = useState("");
   const feedbackPerPage = 5;
 
+  // Static months and days
+  const months = [
+    { value: "01", label: "January" },
+    { value: "02", label: "February" },
+    { value: "03", label: "March" },
+    { value: "04", label: "April" },
+    { value: "05", label: "May" },
+    { value: "06", label: "June" },
+    { value: "07", label: "July" },
+    { value: "08", label: "August" },
+    { value: "09", label: "September" },
+    { value: "10", label: "October" },
+    { value: "11", label: "November" },
+    { value: "12", label: "December" },
+  ];
+  const days = Array.from({ length: 31 }, (_, i) => String(i + 1).padStart(2, "0"));
+
+  // Filtering logic
+  const filteredFeedback = sampleFeedback.filter(fb => {
+    const [fbYear, fbMonth, fbDay] = fb.date.split("-");
+    return (
+      (selectedMonth === "" || fbMonth === selectedMonth) &&
+      (selectedDay === "" || fbDay === selectedDay) &&
+      (year === "" || fbYear === year)
+    );
+  });
+
+  //pagination calculations
   const indexOfLast = currentPage * feedbackPerPage;
   const indexOfFirst = indexOfLast - feedbackPerPage;
-  const currentFeedback = sampleFeedback.slice(indexOfFirst, indexOfLast);
-  const totalPages = Math.ceil(sampleFeedback.length / feedbackPerPage);
+  const currentFeedback = filteredFeedback.slice(indexOfFirst, indexOfLast);
+  const totalPages = Math.max(1, Math.ceil(filteredFeedback.length / feedbackPerPage));
+
+  // Reset to page 1 when filter changes
+  const handleMonthChange = (e) => {
+    setSelectedMonth(e.target.value);
+    setCurrentPage(1);
+  };
+  const handleDayChange = (e) => {
+    setSelectedDay(e.target.value);
+    setCurrentPage(1);
+  };
+  const handleYearChange = (e) => {
+    setYear(e.target.value);
+    setCurrentPage(1);
+  };
+
   return (
     <div className="flex flex-col items-center h-[calc(100vh-5rem)] ml-64">
+      {/* Date Filter */}
+      <div className="mb-4 flex gap-2 items-center">
+        <label className="text-gray-200">Month:</label>
+        <select
+          value={selectedMonth}
+          onChange={handleMonthChange}
+          className="px-2 py-1 rounded bg-gray-600 text-white"
+        >
+          <option value="">All</option>
+          {months.map(month => (
+            <option key={month.value} value={month.value}>
+              {month.label}
+            </option>
+          ))}
+        </select>
+        <label className="text-gray-200">Day:</label>
+        <select
+          value={selectedDay}
+          onChange={handleDayChange}
+          className="px-2 py-1 rounded bg-gray-600 text-white"
+        >
+          <option value="">All</option>
+          {days.map(day => (
+            <option key={day} value={day}>
+              {day}
+            </option>
+          ))}
+        </select>
+        <label className="text-gray-200">Year:</label>
+        <input
+          type="text"
+          value={year}
+          onChange={handleYearChange}
+          placeholder="e.g. 2024"
+          className="px-2 py-1 rounded bg-gray-600 text-white w-20"
+        />
+      </div>
+      
       <div className="space-y-4">
         {currentFeedback.map((item, index) => (
           <div
@@ -47,6 +132,9 @@ function Feedback() {
             <p className="text-gray-300 mt-2">“{item.message}”</p>
           </div>
         ))}
+        {currentFeedback.length === 0 && (
+          <p className="text-gray-400">No feedback for this date.</p>
+        )}
       </div>
       {/* Pagination Controls */}
       <div className="flex gap-2 mt-6">
