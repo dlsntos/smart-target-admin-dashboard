@@ -30,7 +30,7 @@ function SideBar() {
           </li>
           <li>
             <NavLink
-              to="/demographic/ad-performance"
+              to="/dashboard/ad-performance"
               className="block p-3 pl-6 mb-2 rounded-lg text-gray-300
 												 hover:bg-gray-800
 												 transition-all duration-300 ease-in-out"
