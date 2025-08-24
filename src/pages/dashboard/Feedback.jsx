@@ -22,7 +22,19 @@ function Feedback() {
     },
   ];
   return (
-    <div className="flex flex-col items-center h-[calc(100vh-5rem)] ml-64"></div>
+    <div className="flex flex-col items-center h-[calc(100vh-5rem)] ml-64">
+			<div className="space-y-4">
+        {sampleFeedback.map((item, index) => (
+          <div
+            key={index}
+            className="bg-gray-700 border border-gray-700 rounded-xl p-4 shadow-md"
+          >
+            <p className="font-semibold text-gray-200">{item.email}</p>
+            <p className="text-gray-300 mt-2">“{item.message}”</p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 export default Feedback;
