@@ -22,7 +22,7 @@ function SideBar() {
           </li>
           <li>
             <NavLink
-              to="#"
+              to="/dashboard/consent-analytics"
               className={({ isActive }) =>
                 `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
                   isActive ? " bg-gray-800 font-bold" : ""
@@ -58,7 +58,7 @@ function SideBar() {
           </li>
           <li>
             <NavLink
-              to="#"
+              to="/dashboard/feedback"
               className={({ isActive }) =>
                 `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
                   isActive ? " bg-gray-800 font-bold" : ""
