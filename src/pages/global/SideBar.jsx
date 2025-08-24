@@ -10,20 +10,24 @@ function SideBar() {
         <ul className="flex-1 p-3">
           <li>
             <NavLink
-								to="/dashboard/demographic"
-              	className="block p-3 pl-6 mb-2 rounded-lg text-gray-300
-													 hover:bg-gray-800
-													 transition-all duration-300 ease-in-out"
+              to="/dashboard/demographic"
+              className={({ isActive }) =>
+                `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
+                  isActive ? " bg-gray-800 font-bold" : ""
+                }`
+              }
             >
               Demographic Analytics
             </NavLink>
           </li>
           <li>
             <NavLink
-							to="#"
-              className="block p-3 pl-6 mb-2 rounded-lg text-gray-300
-																hover:bg-gray-800
-															  transition-all duration-300 ease-in-out"
+              to="#"
+              className={({ isActive }) =>
+                `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
+                  isActive ? " bg-gray-800 font-bold" : ""
+                }`
+              }
             >
               Consent Analytics
             </NavLink>
@@ -31,39 +35,47 @@ function SideBar() {
           <li>
             <NavLink
               to="/dashboard/ad-performance"
-              className="block p-3 pl-6 mb-2 rounded-lg text-gray-300
-												 hover:bg-gray-800
-												 transition-all duration-300 ease-in-out"
+              className={({ isActive }) =>
+                `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
+                  isActive ? " bg-gray-800 font-bold" : ""
+                }`
+              }
             >
               Ad Performance
             </NavLink>
           </li>
           <li>
             <NavLink
-							to="#"
-              className="block p-3 pl-6 mb-2 rounded-lg text-gray-300 
-																hover:bg-gray-800
-															  transition-all duration-300 ease-in-out"
+              to="#"
+              className={({ isActive }) =>
+                `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
+                  isActive ? " bg-gray-800 font-bold" : ""
+                }`
+              }
             >
               Sales
             </NavLink>
           </li>
           <li>
             <NavLink
-							to="#"
-              className="block p-3 pl-6 mb-2 rounded-lg text-gray-300
-																hover:bg-gray-800
-															  transition-all duration-300 ease-in-out"
+              to="#"
+              className={({ isActive }) =>
+                `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
+                  isActive ? " bg-gray-800 font-bold" : ""
+                }`
+              }
             >
               Feedback
             </NavLink>
           </li>
           <li>
             <NavLink
-							to="#"
-              className="block p-3 pl-6 mb-2 rounded-lg text-gray-300 
-																hover:bg-gray-800
-															  transition-all duration-300 ease-in-out"
+              to="#"
+              className={({ isActive }) =>
+                `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
+                  isActive ? " bg-gray-800 font-bold" : ""
+                }`
+              }
             >
               Settings
             </NavLink>
