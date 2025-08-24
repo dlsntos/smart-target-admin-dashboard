@@ -6,6 +6,7 @@ import Dashboard from ".";
 import AdPerformance from "./pages/dashboard/AdPerformance";
 import Demographics from "./pages/dashboard/Demographics";
 import ConsentAnalytics from "./pages/dashboard/ConsentAnalytics";
+import Feedback from "./pages/dashboard/Feedback";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
                   <Route path="/" element={<Dashboard />} />
                   <Route path="ad-performance" element={<AdPerformance />} />
                   <Route path="consent-analytics" element={<ConsentAnalytics />} />
+                  <Route path="feedback" element={<Feedback />} />
                   <Route path="demographic" element={<Demographics />} />
                 </Routes>
               </div>
