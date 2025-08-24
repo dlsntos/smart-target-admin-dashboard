@@ -1,16 +1,15 @@
-import { Routes, Route} from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 import SideBar from "./pages/global/SideBar";
 import TopBar from "./pages/global/TopBar";
-import Login from './pages/Login';
-import Dashboard from '.';
-import AdPerformance from './pages/dashboard/AdPerformance';
+import Login from "./pages/Login";
+import Dashboard from ".";
+import AdPerformance from "./pages/dashboard/AdPerformance";
+import Demographics from "./pages/dashboard/Demographics";
 
 function App() {
   return (
     <Routes>
-      <Route 
-        path='/'
-        element={<Login />}/>
+      <Route path="/" element={<Login />} />
       <Route
         path="/dashboard/*"
         element={
@@ -25,8 +24,9 @@ function App() {
               <TopBar />
               <div className="flex-1 overflow-auto">
                 <Routes>
-                  <Route path="/" element={<Dashboard />}/>
-                  <Route path="/ad-performance" element={<AdPerformance />} />
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="ad-performance" element={<AdPerformance />} />
+                  <Route path="demographic" element={<Demographics />} />
                 </Routes>
               </div>
             </main>
