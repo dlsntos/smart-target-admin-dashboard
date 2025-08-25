@@ -4,7 +4,7 @@ import logo from '../assets/images/indu-logo-transparent.png';
 
 function Login() {
   const useRef = useRef();
-  const erRef = useRef();
+  const errRef = useRef();
   //useState for login
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,6 +22,11 @@ function Login() {
   return (
 		//Login wrapper
     <div className="h-screen w-screen bg-gray-800">
+      {/* Error message */}
+      <p ref={errRef} className={errMsg ? "errmsg" : 
+        "offscreen"} aria-live="assertive">{errMsg}
+      </p>
+
 			{/* Login contents container */}
       <div className="h-full w-full flex flex-col justify-center items-center">
 				{/* Brand logo */}
