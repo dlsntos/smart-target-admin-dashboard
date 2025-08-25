@@ -1,8 +1,11 @@
-import React, { useRef, useState , useEffect} from "react";
+import React, { useRef, useState , useEffect ,useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import logo from '../assets/images/indu-logo-transparent.png';
+import AuthContext from "../context/AuthProvider";
 
 function Login() {
+  const {setAuth} = useContext(AuthContext);
+  //useRef for email and error
   const emailRef = useRef();
   const errRef = useRef();
   //useState for login
