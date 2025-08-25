@@ -8,6 +8,10 @@ function Login() {
   //useState for login
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
