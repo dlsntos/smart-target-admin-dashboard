@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import logo from '../assets/images/indu-logo-transparent.png';
 
 function Login() {
-  const useRef = useRef();
+  const emailRef = useRef();
   const errRef = useRef();
   //useState for login
   const [email, setEmail] = useState("");
@@ -12,15 +12,16 @@ function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    useRef.current.focus();
+    emailRef.current.focus();
   }, []);
 
   useEffect(() => {
     setErrMsg('');
   }, [email ,password]);
-  
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(email, password);
     navigate("/dashboard");
   };
   return (
@@ -45,7 +46,7 @@ function Login() {
           </label>
           <input
 						className="p-1"
-            ref={useRef}
+            ref={emailRef}
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
