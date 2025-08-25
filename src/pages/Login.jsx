@@ -44,6 +44,7 @@ function Login() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <label>
             <span className="text-gray-300">Password</span>
@@ -53,6 +54,7 @@ function Login() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <div className="flex justify-center">
             <button
