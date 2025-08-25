@@ -53,7 +53,6 @@ function Login() {
           </label>
           <input
 						className="p-1"
-            ref={useRef}
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
