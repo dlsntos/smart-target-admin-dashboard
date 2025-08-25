@@ -13,8 +13,12 @@ function Login() {
 
   useEffect(() => {
     useRef.current.focus();
-  }, [email ,password]);
+  }, []);
 
+  useEffect(() => {
+    setErrMsg('');
+  }, [email ,password]);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate("/dashboard");
