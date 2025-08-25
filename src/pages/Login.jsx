@@ -9,10 +9,11 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
-
-  
   const navigate = useNavigate();
+
+  useEffect(() => {
+    useRef.current.focus();
+  }, [email ,password]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
