@@ -2,6 +2,9 @@ import React, { useRef, useState , useEffect ,useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import logo from '../assets/images/indu-logo-transparent.png';
 import AuthContext from "../context/AuthProvider";
+import axios from "axios";
+
+const LOGIN_URL = "/auth";
 
 function Login() {
   const {setAuth} = useContext(AuthContext);
@@ -24,8 +27,38 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email, password);
-    navigate("/dashboard");
+
+    try {
+      //const response = await axios.post(
+      //  LOGIN_URL, 
+      //  {email, password},
+      //    {
+      //      headers: { 'Content-type': 'application/json' },
+      //      withCredentials: true
+      //    }
+      //)
+      //console.log(JSON.stringify(response?.data));
+      
+      setAuth({ isAdmin: true });
+
+      setEmail('');
+      setPassword('');
+      navigate("/dashboard");
+    } 
+    catch (err) {
+      if (!err?.response){
+        setErrMsg("No service response");
+
+      } else if(err.response?.status === 400){
+        setErrMsg("Missing Email or Password");
+      } else if(err.response?.status === 401){
+        setErrMsg("Unauthorized");
+      } else {
+        setErrMsg("Login Failed");
+      }
+      errRef.current.focus();
+    }
+
   };
   return (
 		//Login wrapper
