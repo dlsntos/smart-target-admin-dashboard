@@ -23,7 +23,6 @@ function App() {
             {/* Main Dashboard Content */}
             <main className="flex flex-col h-full w-full">
               {/* Dashboard Top-bar*/}
-              <TopBar />
               <div className="flex-1 overflow-auto">
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
