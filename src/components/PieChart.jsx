@@ -9,7 +9,7 @@ const COLORS = ["#10b981", "#ef4444"];
 
 function PieChartComponent() {
   return (
-    <div className="w-2/3 h-full bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg">
+    <div className="w-2/3 h-full bg-white dark:bg-gray-800 p-6 rounded-2xl">
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
