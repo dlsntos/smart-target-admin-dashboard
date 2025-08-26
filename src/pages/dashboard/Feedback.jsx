@@ -82,7 +82,7 @@ function Feedback() {
   };
 
   return (
-    <div className="flex flex-col items-center h-[calc(100vh-5rem)] ml-64">
+    <div className="flex flex-col items-center h-full ml-64">
       {/* Date Filter */}
       <div className="mb-4 flex gap-2 items-center">
         <label className="text-gray-200">Month:</label>
