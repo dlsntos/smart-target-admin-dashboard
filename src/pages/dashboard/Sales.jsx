@@ -1,6 +1,15 @@
 import {useState} from 'react';
 
 function Sales () {
+	//list of products
+	const products = [
+		{name: "Blue", price: 1200},
+		{name: "Maroon-shirt", price: 200},
+		{name: "Red-shirt", price: 350}
+	];
+	//generate current date
+	const today = new Date().toISOString().split("T")[0]; 
+
 	const [sales, setSales] = useState([
 		{ product: "Blue", price: 1200, date: "2025-08-20" },
 		{ product: "Maroon-shirt", price: 200, date: "2025-08-21" },
@@ -14,7 +23,7 @@ function Sales () {
 	const [salesFormData, setSalesFormData] = useState({
   	product: "",
   	price: "",
-  	date: "",
+  	date: today,
 	});
 	
 	const handleChange = (e) => {
