@@ -28,6 +28,32 @@ function Sales () {
   	date: today,
 	});
 	
+	useEffect(() => {
+  // Function to update date to PH time
+		const updateDate = () => {
+			setFormData(prev => ({
+				...prev,
+				date: getTodayPH()
+			}));
+		};
+		// Calculate time until PH midnight
+		const now = new Date();
+		const phNow = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Manila" }));
+		const nextMidnightPH = new Date(phNow);
+		nextMidnightPH.setHours(24, 0, 0, 0); // midnight next day in PH
+
+		const msUntilMidnight = nextMidnightPH - phNow;
+
+		// First timer: until next midnight
+		const timeout = setTimeout(() => {
+			updateDate();
+			// Then, every 24 hours
+			setInterval(updateDate, 24 * 60 * 60 * 1000);
+		}, msUntilMidnight);
+
+		return () => clearTimeout(timeout);
+	}, []);
+	
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
