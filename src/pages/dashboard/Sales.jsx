@@ -8,7 +8,9 @@ function Sales () {
 		{name: "Red-shirt", price: 350}
 	];
 	//generate current date
-	const today = new Date().toISOString().split("T")[0]; 
+	const today = new Date().toLocaleDateString("en-CA", {
+  	timeZone: "Asia/Manila"
+	});
 
 	const [sales, setSales] = useState([
 		{ product: "Blue", price: 1200, date: "2025-08-20" },
