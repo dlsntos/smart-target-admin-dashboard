@@ -13,9 +13,6 @@ function Dashboard() {
         <div className="bg-gray-700 rounded-lg p-6 shadow">
           <h2 className="text-xl text-gray-200 mb-2">Consent Analytics</h2>
           <p className="text-gray-400">Track user consent and privacy metrics.</p>
-            <div className="flex-1 w-full h-64 p-2">
-              <ConsentTrendChart />
-            </div>
         </div>
         <div className="bg-gray-700 rounded-lg p-6 shadow">
           <h2 className="text-xl text-gray-200 mb-2">Sales</h2>
