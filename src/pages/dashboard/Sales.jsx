@@ -13,6 +13,16 @@ function Sales () {
   	date: "",
 	});
 	
+	const handleChange = (e) => {
+		setSalesFormData({ ...salesFormData, [e.target.name]: e.target.value });
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		setSales([...sales, salesFormData]); // add new sale
+		setSalesFormData({ product: "", amount: "", date: "" }); // clear form
+	};
+
 	return(
 		<div className="h-full ml-64 px-10 py-6">
 		{/** input form */}
