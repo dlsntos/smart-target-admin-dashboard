@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 function Sales () {
 	//list of products
@@ -7,10 +7,11 @@ function Sales () {
 		{name: "Maroon-shirt", price: 200},
 		{name: "Red-shirt", price: 350}
 	];
+
 	//generate current date
-	const today = new Date().toLocaleDateString("en-CA", {
-  	timeZone: "Asia/Manila"
-	});
+	function getTodayPH() {
+		return new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Manila" });
+	}
 
 	const [sales, setSales] = useState([
 		{ product: "Blue", price: 1200, date: "2025-08-20" },
@@ -25,7 +26,7 @@ function Sales () {
 	const [formData, setFormData] = useState({
   	product: "",
   	price: "",
-  	date: today,
+  	date: getTodayPH(),
 	});
 	
 	useEffect(() => {
@@ -53,7 +54,7 @@ function Sales () {
 
 		return () => clearTimeout(timeout);
 	}, []);
-	
+
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
@@ -61,7 +62,7 @@ function Sales () {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setSales([...sales, formData]); // add new sale
-		setFormData({ product: "", price: "", date: "" }); // clear form
+		setFormData({ product: "", price: "", date: getTodayPH() }); // clear form
 	};
 
 	// Pagination Calculations
