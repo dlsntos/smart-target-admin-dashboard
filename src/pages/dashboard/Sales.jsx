@@ -98,7 +98,7 @@ function Sales () {
 							name="price"
 							value={formData.price}
 							onChange={handleChange}
-							required
+							readOnly
 							className="w-full p-2 border rounded"
 						/>
 					</div>
@@ -109,7 +109,7 @@ function Sales () {
 							name="date"
 							value={formData.date}
   						onChange={handleChange}
-							required
+							readOnly
 							className="w-full p-2 border rounded"
 						/>
 					</div>
