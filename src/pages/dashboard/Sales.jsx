@@ -71,129 +71,132 @@ function Sales () {
   const currentSales = sales.slice(indexOfFirst, indexOfLast);
   const totalPages = Math.max(1, Math.ceil(sales.length / itemsPerPage));
 
-	return(
-		<div className="flex flex-col items-center h-full ml-64 px-10 py-6">
-			<h1 className="font-lupio text-gray-100">Sales Tracker</h1>
-			{/** Sales Product Tracking input container */}
-			<div className="w-[1100px] py-5 bg-gray-400">
-				<form onSubmit={handleSubmit} className="flex justify-evenly">
-					<div className="flex items-center p-3">
-						<label className="block mr-5">Product</label>
-						<select
-							name="product"
-							value={formData.product}
-							onChange={(e) => {
-								const selectedName = e.target.value;
-								if (selectedName === "") {
-								// reset form if no product
-									setFormData({
-										...formData,
-										product: "",
-										price: 0
-									});
-									return;
-								}
-								// reset to 0 first
-								setFormData(prev => ({
-									...prev,
-									product: selectedName,
-									price: 0
-								}));
-								// then update with actual product price
-								const selected = products.find(p => p.name === selectedName);
-								if (selected) {
-									setTimeout(() => {
-										setFormData(prev => ({
-											...prev,
-											price: selected.price
-										}));
-									}, 0); // tiny delay so reset happens first
-									}
-								}}
-								required
-								className="w-full p-2 border rounded"
-							>
-								<option value="">-- Select a product --</option>
-								{products.map((p, id) => (
-									<option key={id} value={p.name}>
-										{p.name}
-									</option>
-								))}
-							</select>
-					</div>
-					<div className="flex items-center p-3">
-						<label className="block mr-5">Price</label>
-						<input
-							type="number"
-							step="any"
-							min="0"
-							name="price"
-							value={formData.price}
-							onChange={handleChange}
-							readOnly
-							className="w-full p-2 border rounded"
-						/>
-					</div>
-						<div className="flex items-center p-3">
-						<label className="block mr-5">Date</label>
-						<input
-							type="date"
-							name="date"
-							value={formData.date}
-  						onChange={handleChange}
-							readOnly
-							className="w-full p-2 border rounded"
-						/>
-					</div>
-					<button 
-						type="submit" 
-						className="p-5 bg-gray-500">
-							Add to Sales
-					</button>
-				</form>
-			</div>
-			{/** Table of sold items (latest shown first) */}
-			<div className="w-[1100px]">
-				<table className="w-full border mt-16">
-					<thead className="bg-gray-200 text-gray-800">
-						<tr>
-							<th className="border p-2">Product</th>
-							<th className="border p-2">Price</th>
-							<th className="border p-2">Date</th>
-						</tr>
-					</thead>
-					<tbody className='bg-gray-800 text-gray-100'>
-						{currentSales.map((sale, id) => (
-							<tr key={id}>
-								<td className="border p-2">{sale.product}</td>
-								<td className="border p-2">{sale.price}</td>
-								<td className="border p-2">{sale.date}</td>
-							</tr>
-						))}
-					</tbody>
-				</table>
-				{/* Pagination Controls */}
-        <div className="flex gap-2 mt-6 justify-center">
-          <button
-            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-            disabled={currentPage === 1}
-            className="px-3 py-1 rounded bg-gray-600 text-white disabled:opacity-50"
+return(
+  <div className="flex flex-col items-center h-full ml-0 lg:ml-64 px-4 sm:px-6 md:px-8 py-6">
+    <h1 className="font-lupio text-gray-100 text-xl sm:text-2xl mb-4">Sales Tracker</h1>
+
+    {/* Sales Product Tracking input container */}
+    <div className="w-full lg:w-[1100px] py-5 bg-gray-400 overflow-x-auto">
+      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row flex-wrap justify-evenly">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center p-3 w-full sm:w-auto">
+          <label className="block mr-0 sm:mr-5 mb-1 sm:mb-0">Product</label>
+          <select
+            name="product"
+            value={formData.product}
+            onChange={(e) => {
+              const selectedName = e.target.value;
+              if (selectedName === "") {
+                setFormData({
+                  ...formData,
+                  product: "",
+                  price: 0
+                });
+                return;
+              }
+              setFormData(prev => ({
+                ...prev,
+                product: selectedName,
+                price: 0
+              }));
+              const selected = products.find(p => p.name === selectedName);
+              if (selected) {
+                setTimeout(() => {
+                  setFormData(prev => ({
+                    ...prev,
+                    price: selected.price
+                  }));
+                }, 0);
+              }
+            }}
+            required
+            className="w-full sm:w-auto p-2 border rounded"
           >
-            Prev
-          </button>
-          <span className="text-gray-200">
-            Page {currentPage} of {totalPages}
-          </span>
-          <button
-            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-            disabled={currentPage === totalPages}
-            className="px-3 py-1 rounded bg-gray-600 text-white disabled:opacity-50"
+            <option value="">-- Select a product --</option>
+            {products.map((p, id) => (
+              <option key={id} value={p.name}>{p.name}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="flex flex-col sm:flex-row items-start sm:items-center p-3 w-full sm:w-auto">
+          <label className="block mr-0 sm:mr-5 mb-1 sm:mb-0">Price</label>
+          <input
+            type="number"
+            step="any"
+            min="0"
+            name="price"
+            value={formData.price}
+            onChange={handleChange}
+            readOnly
+            className="w-full sm:w-auto p-2 border rounded"
+          />
+        </div>
+
+        <div className="flex flex-col sm:flex-row items-start sm:items-center p-3 w-full sm:w-auto">
+          <label className="block mr-0 sm:mr-5 mb-1 sm:mb-0">Date</label>
+          <input
+            type="date"
+            name="date"
+            value={formData.date}
+            onChange={handleChange}
+            readOnly
+            className="w-full sm:w-auto p-2 border rounded"
+          />
+        </div>
+
+        <div className="p-3 w-full sm:w-auto flex justify-start sm:justify-center">
+          <button 
+            type="submit" 
+            className="w-full sm:w-auto p-3 bg-gray-500 rounded text-white"
           >
-            Next
+            Add to Sales
           </button>
         </div>
-			</div>
-		</div>
-	);
+      </form>
+    </div>
+
+    {/* Table of sold items */}
+    <div className="w-full lg:w-[1100px] mt-6 overflow-x-auto">
+      <table className="w-full border">
+        <thead className="bg-gray-200 text-gray-800">
+          <tr>
+            <th className="border p-2">Product</th>
+            <th className="border p-2">Price</th>
+            <th className="border p-2">Date</th>
+          </tr>
+        </thead>
+        <tbody className='bg-gray-800 text-gray-100'>
+          {currentSales.map((sale, id) => (
+            <tr key={id}>
+              <td className="border p-2">{sale.product}</td>
+              <td className="border p-2">{sale.price}</td>
+              <td className="border p-2">{sale.date}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/* Pagination Controls */}
+      <div className="flex flex-col sm:flex-row gap-2 mt-4 justify-center items-center">
+        <button
+          onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+          disabled={currentPage === 1}
+          className="px-3 py-1 rounded bg-gray-600 text-white disabled:opacity-50 w-full sm:w-auto"
+        >
+          Prev
+        </button>
+        <span className="text-gray-200 mt-1 sm:mt-0 mx-2">Page {currentPage} of {totalPages}</span>
+        <button
+          onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+          disabled={currentPage === totalPages}
+          className="px-3 py-1 rounded bg-gray-600 text-white disabled:opacity-50 w-full sm:w-auto"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+);
+
 }
 export default Sales;
