@@ -82,81 +82,84 @@ function Feedback() {
   };
 
   return (
-    <div className="flex flex-col items-center h-full ml-64">
-      {/* Date Filter */}
-      <div className=" mt-5 mb-4 flex gap-2 items-center">
-        <label className="text-gray-200">Month:</label>
-        <select
-          value={selectedMonth}
-          onChange={handleMonthChange}
-          className="px-2 py-1 rounded bg-gray-600 text-white"
-        >
-          <option value="">All</option>
-          {months.map(month => (
-            <option key={month.value} value={month.value}>
-              {month.label}
-            </option>
-          ))}
-        </select>
-        <label className="text-gray-200">Day:</label>
-        <select
-          value={selectedDay}
-          onChange={handleDayChange}
-          className="px-2 py-1 rounded bg-gray-600 text-white"
-        >
-          <option value="">All</option>
-          {days.map(day => (
-            <option key={day} value={day}>
-              {day}
-            </option>
-          ))}
-        </select>
-        <label className="text-gray-200">Year:</label>
-        <input
-          type="text"
-          value={year}
-          onChange={handleYearChange}
-          placeholder="e.g. 2024"
-          className="px-2 py-1 rounded bg-gray-600 text-white w-20"
-        />
-      </div>
-      
-      <div className="space-y-4">
-        {currentFeedback.map((item, index) => (
-          <div
-            key={index}
-            className="bg-gray-700 border border-gray-700 rounded-xl p-4 shadow-md"
-          >
-            <p className="font-semibold text-gray-200">{item.email}</p>
-            <p className="text-gray-400 text-sm">{item.date}</p>
-            <p className="text-gray-300 mt-2">“{item.message}”</p>
-          </div>
+  <div className="flex flex-col items-center h-full ml-0 lg:ml-64 px-4 sm:px-6 md:px-8 pt-20 sm:pt-10">
+    {/* Date Filter */}
+    <div className="mb-4 flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-2 items-start sm:items-center w-full sm:w-auto">
+      <label className="text-gray-200">Month:</label>
+      <select
+        value={selectedMonth}
+        onChange={handleMonthChange}
+        className="px-2 py-1 rounded bg-gray-600 text-white w-full sm:w-auto"
+      >
+        <option value="">All</option>
+        {months.map(month => (
+          <option key={month.value} value={month.value}>
+            {month.label}
+          </option>
         ))}
-        {currentFeedback.length === 0 && (
-          <p className="text-gray-400">No feedback for this date.</p>
-        )}
-      </div>
-      {/* Pagination Controls */}
-      <div className="flex gap-2 mt-6">
-        <button
-          onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-          disabled={currentPage === 1}
-          className="px-3 py-1 rounded bg-gray-600 text-white disabled:opacity-50"
-        >
-          Prev
-        </button>
-        <span className="text-gray-200">
-          Page {currentPage} of {totalPages}
-        </span>
-        <button
-          onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-          disabled={currentPage === totalPages}
-          className="px-3 py-1 rounded bg-gray-600 text-white disabled:opacity-50"
-        >
-          Next
-        </button>
-      </div>
+      </select>
+
+      <label className="text-gray-200">Day:</label>
+      <select
+        value={selectedDay}
+        onChange={handleDayChange}
+        className="px-2 py-1 rounded bg-gray-600 text-white w-full sm:w-auto"
+      >
+        <option value="">All</option>
+        {days.map(day => (
+          <option key={day} value={day}>
+            {day}
+          </option>
+        ))}
+      </select>
+
+      <label className="text-gray-200">Year:</label>
+      <input
+        type="text"
+        value={year}
+        onChange={handleYearChange}
+        placeholder="e.g. 2024"
+        className="px-2 py-1 rounded bg-gray-600 text-white w-full sm:w-20"
+      />
     </div>
-  );
+
+    {/* Feedback Cards */}
+    <div className="space-y-4 w-full">
+      {currentFeedback.map((item, index) => (
+        <div
+          key={index}
+          className="bg-gray-700 border border-gray-700 rounded-xl p-4 shadow-md break-words"
+        >
+          <p className="font-semibold text-gray-200">{item.email}</p>
+          <p className="text-gray-400 text-sm">{item.date}</p>
+          <p className="text-gray-300 mt-2">“{item.message}”</p>
+        </div>
+      ))}
+      {currentFeedback.length === 0 && (
+        <p className="text-gray-400">No feedback for this date.</p>
+      )}
+    </div>
+
+    {/* Pagination Controls */}
+    <div className="flex flex-col sm:flex-row gap-2 mt-6 items-center w-full sm:w-auto">
+      <button
+        onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+        disabled={currentPage === 1}
+        className="px-3 py-1 rounded bg-gray-600 text-white disabled:opacity-50 w-full sm:w-auto"
+      >
+        Prev
+      </button>
+      <span className="text-gray-200 mx-2 mt-1 sm:mt-0">Page {currentPage} of {totalPages}</span>
+      <button
+        onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+        disabled={currentPage === totalPages}
+        className="px-3 py-1 rounded bg-gray-600 text-white disabled:opacity-50 w-full sm:w-auto"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+);
+
 }
 export default Feedback;
