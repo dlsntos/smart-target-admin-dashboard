@@ -27,6 +27,12 @@ function Sales () {
 		setSalesFormData({ product: "", price: "", date: "" }); // clear form
 	};
 
+	// Pagination Calculations
+  const indexOfLast = currentPage * itemsPerPage;
+  const indexOfFirst = indexOfLast - itemsPerPage;
+  const currentSales = sales.slice(indexOfFirst, indexOfLast);
+  const totalPages = Math.max(1, Math.ceil(sales.length / itemsPerPage));
+
 	return(
 		<div className="h-full ml-64 px-10 py-6">
 		{/** input form */}
@@ -96,6 +102,26 @@ function Sales () {
 						))}
 					</tbody>
 				</table>
+				{/* Pagination Controls */}
+        <div className="flex gap-2 mt-6 justify-center">
+          <button
+            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+            disabled={currentPage === 1}
+            className="px-3 py-1 rounded bg-gray-600 text-white disabled:opacity-50"
+          >
+            Prev
+          </button>
+          <span className="text-gray-200">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className="px-3 py-1 rounded bg-gray-600 text-white disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
 			</div>
 		</div>
 	);
