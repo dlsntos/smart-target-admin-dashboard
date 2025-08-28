@@ -18,10 +18,6 @@ function Dashboard() {
             </div>
         </div>
         <div className="bg-gray-700 rounded-lg p-6 shadow">
-          <h2 className="text-xl text-gray-200 mb-2">Ad Performance</h2>
-          <p className="text-gray-400">Monitor ad clicks, impressions, and conversions.</p>
-        </div>
-        <div className="bg-gray-700 rounded-lg p-6 shadow">
           <h2 className="text-xl text-gray-200 mb-2">Sales</h2>
           <p className="text-gray-400">Review sales data and revenue trends.</p>
         </div>
