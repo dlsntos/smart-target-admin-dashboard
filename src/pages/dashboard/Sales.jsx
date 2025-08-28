@@ -1,10 +1,12 @@
+import {useState} from 'react';
+
 function Sales () {
 	const [sales, setSales] = useState([
 		{ product: "Blue", amount: 1200, date: "2025-08-20" },
 		{ product: "Maroon-shirt", amount: 200, date: "2025-08-21" },
 		{ product: "Red-shirt", amount: 350, date: "2025-08-22" },
 	]);
-
+	
 	return(
 		<div className="h-full ml-64 px-10 py-6">
 		{/** input form */}
@@ -41,6 +43,27 @@ function Sales () {
 					</div>
 					<button className="p-5 bg-gray-500">Add to Sales</button>
 				</form>
+			</div>
+			{/** Table of Sales */}
+			<div>
+				<table className="w-full border mt-16">
+					<thead className="bg-gray-200 text-gray-800">
+						<tr>
+							<th className="border p-2">Product</th>
+							<th className="border p-2">Price</th>
+							<th className="border p-2">Date</th>
+						</tr>
+					</thead>
+					<tbody className='bg-gray-800 text-gray-100'>
+						{sales.map((sale, id) => (
+							<tr key={id}>
+								<td className="border p-2">{sale.product}</td>
+								<td className="border p-2">{sale.amount}</td>
+								<td className="border p-2">{sale.date}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
 			</div>
 		</div>
 	);
