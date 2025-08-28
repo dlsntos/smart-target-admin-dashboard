@@ -36,6 +36,7 @@ function Sales () {
 							type="text"
 							name="product"
 							value={salesFormData.product}
+							onChange={handleChange}
 							required
 							className="w-full p-2 border rounded"
 						/>
@@ -44,6 +45,8 @@ function Sales () {
 						<label className="block mr-5">Price</label>
 						<input
 							type="number"
+							step="any"
+							min="0"
 							name="price"
 							value={salesFormData.price}
 							onChange={handleChange}
@@ -56,6 +59,8 @@ function Sales () {
 						<input
 							type="date"
 							name="date"
+							value={salesFormData.date}
+  						onChange={handleChange}
 							required
 							className="w-full p-2 border rounded"
 						/>
