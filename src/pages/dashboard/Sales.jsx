@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import BackButton from '../../components/BackButton';
 
 function Sales () {
 	//list of products
@@ -74,7 +75,9 @@ function Sales () {
 return(
   <div className="flex flex-col items-center h-full ml-0 lg:ml-64 px-4 sm:px-6 md:px-8 py-6">
     <h1 className="font-lupio text-gray-100 text-xl sm:text-2xl mb-4">Sales Tracker</h1>
-
+		<div className="w-full flex justify-start mb-4">
+  		<BackButton />
+		</div>
     {/* Sales Product Tracking input container */}
     <div className="w-full lg:w-[1100px] py-5 bg-gray-400 overflow-x-auto">
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row flex-wrap justify-evenly">
