@@ -1,4 +1,10 @@
 function Sales () {
+	const [sales, setSales] = useState([
+		{ product: "Blue", amount: 1200, date: "2025-08-20" },
+		{ product: "Maroon-shirt", amount: 200, date: "2025-08-21" },
+		{ product: "Red-shirt", amount: 350, date: "2025-08-22" },
+	]);
+
 	return(
 		<div className="h-full ml-64 px-10 py-6">
 		{/** input form */}
