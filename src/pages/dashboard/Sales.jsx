@@ -80,16 +80,49 @@ function Sales () {
 				<form onSubmit={handleSubmit} className="flex justify-evenly">
 					<div className="flex items-center p-3">
 						<label className="block mr-5">Product</label>
-						<input
-							type="text"
+						<select
 							name="product"
 							value={formData.product}
-							onChange={handleChange}
-							required
-							className="w-full p-2 border rounded"
-						/>
+							onChange={(e) => {
+								const selectedName = e.target.value;
+								if (selectedName === "") {
+								// reset form if no product
+									setFormData({
+										...formData,
+										product: "",
+										price: 0
+									});
+									return;
+								}
+								// reset to 0 first
+								setFormData(prev => ({
+									...prev,
+									product: selectedName,
+									price: 0
+								}));
+								// then update with actual product price
+								const selected = products.find(p => p.name === selectedName);
+								if (selected) {
+									setTimeout(() => {
+										setFormData(prev => ({
+											...prev,
+											price: selected.price
+										}));
+									}, 0); // tiny delay so reset happens first
+									}
+								}}
+								required
+								className="w-full p-2 border rounded"
+							>
+								<option value="">-- Select a product --</option>
+								{products.map((p, id) => (
+									<option key={id} value={p.name}>
+										{p.name}
+									</option>
+								))}
+							</select>
 					</div>
-						<div className="flex items-center p-3">
+					<div className="flex items-center p-3">
 						<label className="block mr-5">Price</label>
 						<input
 							type="number"
