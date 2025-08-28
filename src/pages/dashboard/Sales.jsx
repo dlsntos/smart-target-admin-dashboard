@@ -102,7 +102,7 @@ function Sales () {
 						</tr>
 					</thead>
 					<tbody className='bg-gray-800 text-gray-100'>
-						{sales.map((sale, id) => (
+						{currentSales.map((sale, id) => (
 							<tr key={id}>
 								<td className="border p-2">{sale.product}</td>
 								<td className="border p-2">{sale.price}</td>
