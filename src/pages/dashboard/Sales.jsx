@@ -2,14 +2,14 @@ import {useState} from 'react';
 
 function Sales () {
 	const [sales, setSales] = useState([
-		{ product: "Blue", amount: 1200, date: "2025-08-20" },
-		{ product: "Maroon-shirt", amount: 200, date: "2025-08-21" },
-		{ product: "Red-shirt", amount: 350, date: "2025-08-22" },
+		{ product: "Blue", price: 1200, date: "2025-08-20" },
+		{ product: "Maroon-shirt", price: 200, date: "2025-08-21" },
+		{ product: "Red-shirt", price: 350, date: "2025-08-22" },
 	]);
 
 	const [salesFormData, setSalesFormData] = useState({
   	product: "",
-  	amount: "",
+  	price: "",
   	date: "",
 	});
 	
@@ -20,7 +20,7 @@ function Sales () {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setSales([...sales, salesFormData]); // add new sale
-		setSalesFormData({ product: "", amount: "", date: "" }); // clear form
+		setSalesFormData({ product: "", price: "", date: "" }); // clear form
 	};
 
 	return(
@@ -29,12 +29,13 @@ function Sales () {
 			<h1 className="font-lupio text-gray-100">Sales Tracker</h1>
 			<div className="w-full py-5 bg-gray-400">
 				<h2>Input Sales</h2>
-				<form className="flex justify-evenly">
+				<form onSubmit={handleSubmit} className="flex justify-evenly">
 					<div className="flex items-center p-3">
 						<label className="block mr-5">Product</label>
 						<input
 							type="text"
 							name="product"
+							value={salesFormData.product}
 							required
 							className="w-full p-2 border rounded"
 						/>
@@ -43,7 +44,9 @@ function Sales () {
 						<label className="block mr-5">Price</label>
 						<input
 							type="text"
-							name="product"
+							name="price"
+							value={salesFormData.price}
+							onChange={handleChange}
 							required
 							className="w-full p-2 border rounded"
 						/>
@@ -52,12 +55,16 @@ function Sales () {
 						<label className="block mr-5">Date</label>
 						<input
 							type="text"
-							name="product"
+							name="date"
 							required
 							className="w-full p-2 border rounded"
 						/>
 					</div>
-					<button className="p-5 bg-gray-500">Add to Sales</button>
+					<button 
+						type="submit" 
+						className="p-5 bg-gray-500">
+							Add to Sales
+					</button>
 				</form>
 			</div>
 			{/** Table of Sales */}
