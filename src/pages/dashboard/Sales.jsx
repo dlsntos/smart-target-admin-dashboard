@@ -43,7 +43,7 @@ function Sales () {
 						<div className="flex items-center p-3">
 						<label className="block mr-5">Price</label>
 						<input
-							type="text"
+							type="number"
 							name="price"
 							value={salesFormData.price}
 							onChange={handleChange}
@@ -54,7 +54,7 @@ function Sales () {
 						<div className="flex items-center p-3">
 						<label className="block mr-5">Date</label>
 						<input
-							type="text"
+							type="date"
 							name="date"
 							required
 							className="w-full p-2 border rounded"
