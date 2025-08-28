@@ -7,6 +7,10 @@ function Sales () {
 		{ product: "Red-shirt", price: 350, date: "2025-08-22" },
 	]);
 
+	// Use States for pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+
 	const [salesFormData, setSalesFormData] = useState({
   	product: "",
   	price: "",
