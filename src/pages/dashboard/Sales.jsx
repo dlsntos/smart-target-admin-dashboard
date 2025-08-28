@@ -73,8 +73,8 @@ function Sales () {
 
 	return(
 		<div className="flex flex-col items-center h-full ml-64 px-10 py-6">
-		{/** input form */}
 			<h1 className="font-lupio text-gray-100">Sales Tracker</h1>
+			{/** Sales Product Tracking input container */}
 			<div className="w-[1100px] py-5 bg-gray-400">
 				<form onSubmit={handleSubmit} className="flex justify-evenly">
 					<div className="flex items-center p-3">
@@ -152,7 +152,7 @@ function Sales () {
 					</button>
 				</form>
 			</div>
-			{/** Table of Sales */}
+			{/** Table of sold items (latest shown first) */}
 			<div className="w-[1100px]">
 				<table className="w-full border mt-16">
 					<thead className="bg-gray-200 text-gray-800">
