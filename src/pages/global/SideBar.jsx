@@ -34,19 +34,7 @@ function SideBar() {
           </li>
           <li>
             <NavLink
-              to="/dashboard/ad-performance"
-              className={({ isActive }) =>
-                `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
-                  isActive ? " bg-gray-800 font-bold" : ""
-                }`
-              }
-            >
-              Ad Performance
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="#"
+              to="/dashboard/sales"
               className={({ isActive }) =>
                 `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
                   isActive ? " bg-gray-800 font-bold" : ""
@@ -66,18 +54,6 @@ function SideBar() {
               }
             >
               Feedback
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="#"
-              className={({ isActive }) =>
-                `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
-                  isActive ? " bg-gray-800 font-bold" : ""
-                }`
-              }
-            >
-              Settings
             </NavLink>
           </li>
         </ul>
