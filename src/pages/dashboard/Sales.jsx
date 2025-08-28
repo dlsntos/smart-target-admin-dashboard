@@ -20,20 +20,20 @@ function Sales () {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
-	const [salesFormData, setSalesFormData] = useState({
+	const [formData, setFormData] = useState({
   	product: "",
   	price: "",
   	date: today,
 	});
 	
 	const handleChange = (e) => {
-		setSalesFormData({ ...salesFormData, [e.target.name]: e.target.value });
+		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		setSales([...sales, salesFormData]); // add new sale
-		setSalesFormData({ product: "", price: "", date: "" }); // clear form
+		setSales([...sales, formData]); // add new sale
+		setFormData({ product: "", price: "", date: "" }); // clear form
 	};
 
 	// Pagination Calculations
@@ -54,7 +54,7 @@ function Sales () {
 						<input
 							type="text"
 							name="product"
-							value={salesFormData.product}
+							value={formData.product}
 							onChange={handleChange}
 							required
 							className="w-full p-2 border rounded"
@@ -67,7 +67,7 @@ function Sales () {
 							step="any"
 							min="0"
 							name="price"
-							value={salesFormData.price}
+							value={formData.price}
 							onChange={handleChange}
 							required
 							className="w-full p-2 border rounded"
@@ -78,7 +78,7 @@ function Sales () {
 						<input
 							type="date"
 							name="date"
-							value={salesFormData.date}
+							value={formData.date}
   						onChange={handleChange}
 							required
 							className="w-full p-2 border rounded"
