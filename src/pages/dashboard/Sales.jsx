@@ -81,7 +81,7 @@ function Sales () {
 						{sales.map((sale, id) => (
 							<tr key={id}>
 								<td className="border p-2">{sale.product}</td>
-								<td className="border p-2">{sale.amount}</td>
+								<td className="border p-2">{sale.price}</td>
 								<td className="border p-2">{sale.date}</td>
 							</tr>
 						))}
