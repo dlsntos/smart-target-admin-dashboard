@@ -6,6 +6,12 @@ function Sales () {
 		{ product: "Maroon-shirt", amount: 200, date: "2025-08-21" },
 		{ product: "Red-shirt", amount: 350, date: "2025-08-22" },
 	]);
+
+	const [salesFormData, setSalesFormData] = useState({
+  	product: "",
+  	amount: "",
+  	date: "",
+	});
 	
 	return(
 		<div className="h-full ml-64 px-10 py-6">
