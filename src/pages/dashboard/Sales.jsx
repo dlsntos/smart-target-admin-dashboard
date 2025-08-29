@@ -15,9 +15,9 @@ function Sales () {
 	}
 
 	const [sales, setSales] = useState([
-		{ product: "Blue", price: 1200, date: "2025-08-20" },
-		{ product: "Maroon-shirt", price: 200, date: "2025-08-21" },
-		{ product: "Red-shirt", price: 350, date: "2025-08-22" },
+		{ product: "Blue", price: 1200, demographic: "Teen female", used: "yes", date: "2025-08-20" },
+		{ product: "Maroon-shirt", price: 200, demographic: "Adult Female", used: "no", date: "2025-08-21" },
+		{ product: "Red-shirt", price: 350, demographic: "Teen Male", used: "yes", date: "2025-08-22" },
 	]);
 
 	// Use States for pagination
@@ -27,6 +27,8 @@ function Sales () {
 	const [formData, setFormData] = useState({
   	product: "",
   	price: "",
+    demographic: "",
+    used: "",
   	date: getTodayPH(),
 	});
 	
@@ -68,7 +70,7 @@ function Sales () {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setSales([...sales, formData]); // add new sale
-		setFormData({ product: "", price: "", date: getTodayPH() }); // clear form
+		setFormData({ product: "", price: "", demographic: "", used: "",date: getTodayPH() }); // clear form
 	};
 
 	// Pagination Calculations
@@ -152,6 +154,37 @@ return(
           />
         </div>
 
+        <div className="flex flex-col sm:flex-row items-start sm:items-center p-3 w-full sm:w-auto">
+          <label className="block mr-0 sm:mr-5 mb-1 sm:mb-0">Demographic</label>
+          <select
+            name="demographic"
+            value={formData.demographic}
+            onChange={handleChange}
+            required
+            className="w-full sm:w-auto p-2 border rounded"
+          >
+            <option value="">-- Select gender --</option>
+            <option value="Teen Male">Teen Male</option>
+            <option value="Teen Female">Teen Female</option>
+            <option value="Adult Male">Adult Male</option>
+            <option value="Adult Female">Adult Female</option>
+          </select>
+        </div>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center p-3 w-full sm:w-auto">
+          <label className="block mr-0 sm:mr-5 mb-1 sm:mb-0">Use</label>
+          <select
+            name="used"
+            value={formData.used}
+            onChange={handleChange}
+            required
+            className="w-full sm:w-auto p-2 border rounded"
+          >
+            <option value="">-- Select use --</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+
         <div className="p-3 w-full sm:w-auto flex justify-start sm:justify-center">
           <button 
             type="submit" 
@@ -170,6 +203,8 @@ return(
           <tr>
             <th className="border p-2">Product</th>
             <th className="border p-2">Price</th>
+            <th className="border p-2">Demographic</th>
+            <th className="border p-2">Use System</th>
             <th className="border p-2">Date</th>
           </tr>
         </thead>
@@ -178,6 +213,8 @@ return(
             <tr key={id}>
               <td className="border p-2">{sale.product}</td>
               <td className="border p-2">{sale.price}</td>
+              <td className="border p-2">{sale.demographic}</td>
+              <td className="border p-2">{sale.used}</td>
               <td className="border p-2">{sale.date}</td>
             </tr>
           ))}
