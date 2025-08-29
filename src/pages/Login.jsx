@@ -62,7 +62,7 @@ function Login() {
   };
   return (
 		//Login wrapper
-    <div className="h-screen w-screen bg-gray-800">
+    <div className="h-screen w-screen bg-gray-800 overflow-hidden">
       {/* Error message */}
       <p ref={errRef} className={errMsg ? "errmsg" : 
         "offscreen"} aria-live="assertive">{errMsg}
@@ -71,10 +71,10 @@ function Login() {
 			{/* Login contents container */}
       <div className="h-full w-full flex flex-col justify-center items-center">
 				{/* Brand logo */}
-				<img src={logo} className="h-[100px] w-[300px]"/>
+				<img src={logo} className="h-[100px] w-[150] lg:h-[100px] lg:w-[300px]"/>
 				
 				{/* Login forms container*/}
-        <form  className="flex flex-col mt-5 h-[500px] w-[300px] gap-2" 
+        <form  className="flex flex-col mt-5 h-[300px] w-[250px] lg:h-[500px] lg:w-[300px] gap-2" 
 							 onSubmit={handleSubmit}
 				>
           <label>
