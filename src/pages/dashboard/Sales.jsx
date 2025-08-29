@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import BackButton from '../../components/BackButton';
-
+import {createSale} from '../../api/api';
+import axios from 'axios';
 function Sales () {
 	//list of products
 	const products = [
@@ -14,11 +15,10 @@ function Sales () {
 		return new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Manila" });
 	}
 
-	const [sales, setSales] = useState([
-		{ product: "Blue", price: 1200, demographic: "Teen female", used: "yes", date: "2025-08-20" },
-		{ product: "Maroon-shirt", price: 200, demographic: "Adult Female", used: "no", date: "2025-08-21" },
-		{ product: "Red-shirt", price: 350, demographic: "Teen Male", used: "yes", date: "2025-08-22" },
-	]);
+	const [sales, setSales] = useState([]);
+  	//{ product: "Blue", price: 1200, demographic: "Teen female", used: "yes", date: "2025-08-20" },
+		//{ product: "Maroon-shirt", price: 200, demographic: "Adult Female", used: "no", date: "2025-08-21" },
+		//{ product: "Red-shirt", price: 350, demographic: "Teen Male", used: "yes", date: "2025-08-22" },
 
 	// Use States for pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,7 +28,7 @@ function Sales () {
   	product: "",
   	price: "",
     demographic: "",
-    used: "",
+    used: false,
   	date: getTodayPH(),
 	});
 	
@@ -64,13 +64,25 @@ function Sales () {
 	}, []);
 
 	const handleChange = (e) => {
-		setFormData({ ...formData, [e.target.name]: e.target.value });
+		const { name, value } = e.target;
+    if (name === "used") {
+      setFormData({ ...formData, used: value === "Yes" });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
 	};
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		setSales([...sales, formData]); // add new sale
-		setFormData({ product: "", price: "", demographic: "", used: "",date: getTodayPH() }); // clear form
+	const handleSubmit = async (e) => {
+    e.preventDefault();
+    try{
+      const response = await createSale(formData);
+		  alert(`Sale recorded! ID: ${response.data.id}`);
+      setSales([...sales, { ...formData, id: response.data.id }]); // add new sale
+		  setFormData({ product: "", price: "", demographic: "", used: false,date: getTodayPH() }); // clear form
+    }catch(err){
+       console.error("Error creating sale:", err);
+      alert("Failed to record sale.");
+    }
 	};
 
 	// Pagination Calculations
@@ -174,7 +186,7 @@ return(
           <label className="block mr-0 sm:mr-5 mb-1 sm:mb-0">Use</label>
           <select
             name="used"
-            value={formData.used}
+            value={formData.used ? "Yes" : "No"}
             onChange={handleChange}
             required
             className="w-full sm:w-auto p-2 border rounded"
@@ -210,11 +222,11 @@ return(
         </thead>
         <tbody className='bg-gray-800 text-gray-100'>
           {currentSales.map((sale, id) => (
-            <tr key={id}>
+            <tr key={sale.id || id}>
               <td className="border p-2">{sale.product}</td>
               <td className="border p-2">{sale.price}</td>
               <td className="border p-2">{sale.demographic}</td>
-              <td className="border p-2">{sale.used}</td>
+              <td className="border p-2">{sale.used ? "Yes" : "No"}</td>
               <td className="border p-2">{sale.date}</td>
             </tr>
           ))}
