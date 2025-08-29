@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import BackButton from "../../components/BackButton";
 function Feedback() {
   const sampleFeedback = [
@@ -50,6 +50,12 @@ function Feedback() {
     { value: "11", label: "November" },
     { value: "12", label: "December" },
   ];
+
+  //change document title
+  useEffect(() => {
+    document.title = "Feedback"
+  },[]);
+
   const days = Array.from({ length: 31 }, (_, i) => String(i + 1).padStart(2, "0"));
 
   // Filtering logic

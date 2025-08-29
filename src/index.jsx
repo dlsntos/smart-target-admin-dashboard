@@ -1,7 +1,11 @@
-import BarChartComponent from "./components/BarChart";
-import ConsentTrendChart from "./components/ConsentTrendOverTime";
+import { useEffect } from "react";
 
 function Dashboard() {
+  //change document title
+  useEffect(() => {
+    document.title = "Dashboard"
+  },[]);
+
   return (
     <div className="h-full sm:ml-0 lg:ml-64 bg-gray-800 p-8">
       <h1 className="text-3xl font-lupio text-gray-100 mb-8 text-center lg:text-left">Dashboard</h1>

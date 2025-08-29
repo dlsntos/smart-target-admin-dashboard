@@ -30,6 +30,11 @@ function Sales () {
   	date: getTodayPH(),
 	});
 	
+  //change document title
+  useEffect(() => {
+    document.title = "Sales Tracker"
+  },[]);
+
 	useEffect(() => {
   // Function to update date to PH time
 		const updateDate = () => {

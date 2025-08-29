@@ -17,6 +17,11 @@ function Login() {
   const [errMsg, setErrMsg] = useState("");
   const navigate = useNavigate();
 
+    //change document title
+  useEffect(() => {
+    document.title = "Login"
+  },[]);
+
   useEffect(() => {
     emailRef.current.focus();
   }, []);
