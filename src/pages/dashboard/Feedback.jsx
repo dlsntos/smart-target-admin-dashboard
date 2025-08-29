@@ -83,7 +83,7 @@ function Feedback() {
   };
 
   return (
-  <div className="flex flex-col items-center h-full ml-0 lg:ml-64 px-4 sm:px-6 md:px-8 pt-20 sm:pt-10">
+  <div className="flex flex-col items-center h-full ml-0 lg:ml-64 px-5 sm:px-6 md:px-8 pt-20 sm:pt-10">
     {/* Date Filter */}
     <div className="w-full flex justify-start mb-4">
       <BackButton />
@@ -145,7 +145,7 @@ function Feedback() {
     </div>
 
     {/* Pagination Controls */}
-    <div className="flex flex-col sm:flex-row gap-2 mt-6 items-center w-full sm:w-auto">
+    <div className="flex flex-col sm:flex-row gap-2 mt-6 items-center w-full sm:w-auto pb-10 md:pb-0">
       <button
         onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
         disabled={currentPage === 1}

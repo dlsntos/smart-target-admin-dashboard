@@ -73,13 +73,13 @@ function Sales () {
   const totalPages = Math.max(1, Math.ceil(sales.length / itemsPerPage));
 
 return(
-  <div className="flex flex-col items-center h-full ml-0 lg:ml-64 px-4 sm:px-6 md:px-8 py-6">
-    <h1 className="font-lupio text-gray-100 text-xl sm:text-2xl mb-4">Sales Tracker</h1>
-		<div className="w-full flex justify-start mb-4">
+  <div className="flex flex-col items-center h-full ml-0 lg:ml-64 px-5 sm:px-6 md:px-8 pt-5 overflow-x-auto">
+    <div className="w-full flex justify-start mb-4">
   		<BackButton />
 		</div>
+    <h1 className="font-lupio text-gray-100 text-xl sm:text-2xl mb-4">Sales Tracker</h1>
     {/* Sales Product Tracking input container */}
-    <div className="w-full lg:w-[1100px] py-5 bg-gray-400 overflow-x-auto">
+    <div className="w-full lg:w-[1100px] py-5 bg-gray-400">
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row flex-wrap justify-evenly">
         <div className="flex flex-col sm:flex-row items-start sm:items-center p-3 w-full sm:w-auto">
           <label className="block mr-0 sm:mr-5 mb-1 sm:mb-0">Product</label>
@@ -159,7 +159,7 @@ return(
     </div>
 
     {/* Table of sold items */}
-    <div className="w-full lg:w-[1100px] mt-6 overflow-x-auto">
+    <div className="w-full lg:w-[1100px] mt-6">
       <table className="w-full border">
         <thead className="bg-gray-200 text-gray-800">
           <tr>
@@ -180,7 +180,7 @@ return(
       </table>
 
       {/* Pagination Controls */}
-      <div className="flex flex-col sm:flex-row gap-2 mt-4 justify-center items-center">
+      <div className="flex flex-col sm:flex-row gap-2 mt-4 justify-center items-center pb-10 lg:pb-0">
         <button
           onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
           disabled={currentPage === 1}
