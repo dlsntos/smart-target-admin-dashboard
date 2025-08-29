@@ -1,5 +1,7 @@
 import axios from 'axios';
 
-export default axios.create({
-    baseURL: 'http://localhost:5000'
-});
+const API_BASE = "http://localhost:5000";
+
+export const createSale = (saleData) => {
+  return axios.post(`${API_BASE}/api/sales`, saleData);
+};
