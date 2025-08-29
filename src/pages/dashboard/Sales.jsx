@@ -73,8 +73,8 @@ function Sales () {
   const totalPages = Math.max(1, Math.ceil(sales.length / itemsPerPage));
 
 return(
-  <div className="flex flex-col items-center h-full ml-0 lg:ml-64 px-5 sm:px-6 md:px-8 pt-5 overflow-x-auto">
-    <div className="w-full flex justify-start mb-4">
+  <div className="flex flex-col items-center h-full ml-0 lg:ml-64 px-5 py-4 lg:py-5">
+    <div className="w-full flex justify-end lg:justify-start mb-4">
   		<BackButton />
 		</div>
     <h1 className="font-lupio text-gray-100 text-xl sm:text-2xl mb-4">Sales Tracker</h1>
