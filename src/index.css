@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: 'LupioBold';
-  src: url('/public/fonts/Fontspring-DEMO-lupio-bold-italic.otf') format('opentype');
+  src: url('/fonts/Fontspring-DEMO-lupio-bold-italic.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
