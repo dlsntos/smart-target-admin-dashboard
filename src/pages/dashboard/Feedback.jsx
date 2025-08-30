@@ -1,7 +1,6 @@
 import { useState, useEffect} from "react";
 import BackButton from "../../components/BackButton";
 import {fetchFeedbackData} from '../../api/api';
-import axios from 'axios';
 
 function Feedback() {
   //state that hold api feedback data
