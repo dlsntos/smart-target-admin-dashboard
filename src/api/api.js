@@ -9,3 +9,7 @@ export const createSale = (saleData) => {
 export const fetchFeedbackData = (feedbackData) => {
   return axios.get(`${API_BASE}/api/get-feedback`, feedbackData);
 };
+
+export const fetchSalesData = (salesData) => {
+  return axios.get(`${API_BASE}/api/get-sales`, salesData);
+};

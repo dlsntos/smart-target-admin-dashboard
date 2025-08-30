@@ -1,8 +1,9 @@
 import {useState, useEffect} from 'react';
 import BackButton from '../../components/BackButton';
 import {createSale} from '../../api/api';
-import axios from 'axios';
+import { fetchSalesData } from '../../api/api';
 function Sales () {
+
 	//list of products
 	const products = [
 		{name: "Blue", price: 1200},
@@ -15,7 +16,10 @@ function Sales () {
 		return new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Manila" });
 	}
 
+  //state that hold api sales data
 	const [sales, setSales] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   	//{ product: "Blue", price: 1200, demographic: "Teen female", used: "yes", date: "2025-08-20" },
 		//{ product: "Maroon-shirt", price: 200, demographic: "Adult Female", used: "no", date: "2025-08-21" },
 		//{ product: "Red-shirt", price: 350, demographic: "Teen Male", used: "yes", date: "2025-08-22" },
@@ -72,18 +76,38 @@ function Sales () {
     }
 	};
 
-	const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
+    try {
       const response = await createSale(formData);
-		  alert(`Sale recorded! ID: ${response.data.id}`);
-      setSales([...sales, { ...formData, id: response.data.id }]); // add new sale
-		  setFormData({ product: "", price: "", demographic: "", used: false,date: getTodayPH() }); // clear form
-    }catch(err){
-       console.error("Error creating sale:", err);
+      setSales(prev => [...prev, response.data]);  // instant render
+      alert(`Sale recorded! ID: ${response.data.id}`);
+      setFormData({ product: "", price: "", demographic: "", used: false, date: getTodayPH() });
+    } catch (err) {
+      console.error("Error creating sale:", err);
       alert("Failed to record sale.");
     }
-	};
+  };
+
+    //Fetch Sales data
+  const fetchSales = async () => {
+    try {
+      setLoading(true);
+      const res = await fetchSalesData();
+      setSales(res.data);   // or setSales(await res.json()) if using fetch()
+    } catch (err) {
+      setError("Failed to fetch Sales Data");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchSales();
+    const interval = setInterval(fetchSales, 1000); // refresh every 5s
+    return () => clearInterval(interval);
+  }, []);
+
 
 	// Pagination Calculations
   const indexOfLast = currentPage * itemsPerPage;
@@ -210,6 +234,8 @@ return(
 
     {/* Table of sold items */}
     <div className="w-full lg:w-[1100px] mt-6">
+      {loading && <p className="text-gray-400">Loading sales...</p>}
+      {error && <p className="text-red-400">{error}</p>}
       <table className="w-full border">
         <thead className="bg-gray-200 text-gray-800">
           <tr>
@@ -221,16 +247,18 @@ return(
           </tr>
         </thead>
         <tbody className='bg-gray-800 text-gray-100'>
-          {currentSales.map((sale, id) => (
-            <tr key={sale.id || id}>
-              <td className="border p-2">{sale.product}</td>
-              <td className="border p-2">{sale.price}</td>
-              <td className="border p-2">{sale.demographic}</td>
-              <td className="border p-2">{sale.used ? "Yes" : "No"}</td>
-              <td className="border p-2">{sale.date}</td>
-            </tr>
-          ))}
-        </tbody>
+        {currentSales.map((sale, id) => (
+          <tr key={sale.id}>
+            <td className="border p-2">{sale.product}</td>
+            <td className="border p-2">{sale.price}</td>
+            <td className="border p-2">{sale.demographic}</td>
+            <td className="border p-2">{sale.used ? "Yes" : "No"}</td>
+            <td className="border p-2">
+              {sale.date ? sale.date.split("T")[0] : ""}
+            </td>
+          </tr>
+        ))}
+      </tbody>
       </table>
 
       {/* Pagination Controls */}
