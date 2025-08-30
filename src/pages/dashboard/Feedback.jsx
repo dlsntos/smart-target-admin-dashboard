@@ -1,32 +1,13 @@
 import { useState, useEffect} from "react";
 import BackButton from "../../components/BackButton";
+import {fetchFeedbackData} from '../../api/api';
+import axios from 'axios';
+
 function Feedback() {
-  const sampleFeedback = [
-    {
-      email: "notarealemail9@gmail.com",
-      message:
-        "The whole store was very accommodating. However the long sleeves that I am looking for is not here",
-      date: "2024-06-01",
-    },
-    {
-      email: "dalengdalen@gmail.com",
-      message:
-        "Ang dali gamitin ng site, nakikita ko agad yung kulay at size na available. Sana mas madagdagan pa yung stock ng oversized shirts kasi mabilis maubos!",
-      date: "2024-06-01",
-    },
-    {
-      email: "superflocious9@gmail.com",
-      message:
-        "Maganda yung site kasi hindi puro lalaki lang—napansin ko may pang-babae na rin sa display, kaya mas confident ako bumili.",
-      date: "2024-06-02",
-    },
-    {
-      email: "realread9do@gmail.com",
-      message:
-        "Medyo nakalilito sa umpisa kung saan makikita yung cart, pero once nakita ko na, smooth na yung checkout.",
-      date: "2025-06-02",
-    },
-  ];
+  //state that hold api feedback data
+  const [feedback, setFeedback] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // State for pagination and filters
   const [currentPage, setCurrentPage] = useState(1);
@@ -56,11 +37,27 @@ function Feedback() {
     document.title = "Feedback"
   },[]);
 
+  //Fetch Feedback data
+  useEffect(() => {
+    const fetchFeedback = async () => {
+      try {
+        setLoading(true);
+        const res = await fetchFeedbackData(); 
+        setFeedback(res.data);
+      } catch (err) {
+        setError("Failed to fetch feedback");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchFeedback();
+  }, []);
+
   const days = Array.from({ length: 31 }, (_, i) => String(i + 1).padStart(2, "0"));
 
   // Filtering logic
-  const filteredFeedback = sampleFeedback.filter(fb => {
-    const [fbYear, fbMonth, fbDay] = fb.date.split("-");
+  const filteredFeedback = feedback.filter(fb => {
+    const [fbYear, fbMonth, fbDay] = (fb.date || "").split("-");
     return (
       (selectedMonth === "" || fbMonth === selectedMonth) &&
       (selectedDay === "" || fbDay === selectedDay) &&
@@ -135,7 +132,10 @@ function Feedback() {
 
     {/* Feedback Cards */}
     <div className="space-y-4 w-full">
-      {currentFeedback.map((item, index) => (
+      {loading && <p className="text-gray-400">Loading...</p>}
+      {error && <p className="text-red-400">{error}</p>}
+
+      {!loading && !error && currentFeedback.map((item, index) => (
         <div
           key={index}
           className="bg-gray-700 border border-gray-700 rounded-xl p-4 shadow-md break-words"
@@ -145,7 +145,7 @@ function Feedback() {
           <p className="text-gray-300 mt-2">“{item.message}”</p>
         </div>
       ))}
-      {currentFeedback.length === 0 && (
+      {!loading && !error && currentFeedback.length === 0 && (
         <p className="text-gray-400">No feedback for this date.</p>
       )}
     </div>
