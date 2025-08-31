@@ -1,13 +1,30 @@
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer} from "recharts";
-
-const consentData = [
-  { name: "Agree", value: 120 },
-  { name: "Disagree", value: 45 },
-];
+import { useEffect, useState } from "react";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 const COLORS = ["#10b981", "#ef4444"];
 
-function PieChartComponent() {
+function ConsentPieChart() {
+  const [consentData, setConsentData] = useState([
+    { name: "Agree", value: 0 },
+    { name: "Disagree", value: 0 },
+  ]);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:5000/api/consent-latest") // Flask GET endpoint
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.data) setConsentData(data.data);
+      })
+      .catch((err) => console.error("Failed to fetch consent data:", err));
+  }, []);
+
   return (
     <div className="w-full h-64 sm:h-96 md:h-72 lg:h-full bg-white dark:bg-gray-800 p-2 sm:p-4 sm:p-6 rounded-2xl shadow">
       <ResponsiveContainer width="100%" height="100%">
@@ -18,10 +35,9 @@ function PieChartComponent() {
             nameKey="name"
             cx="50%"
             cy="50%"
-            outerRadius="60%" // Reduced from 80% to prevent overflow on small screens
+            outerRadius="60%"
             label={({ name, value }) => {
-              // Shorter labels on very small screens
-              if (typeof window !== 'undefined' && window.innerWidth < 500) {
+              if (typeof window !== "undefined" && window.innerWidth < 500) {
                 return `${name.charAt(0)}: ${value}`;
               }
               return `${name}: ${value}`;
@@ -29,7 +45,10 @@ function PieChartComponent() {
             labelLine={false}
           >
             {consentData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
             ))}
           </Pie>
           <Tooltip
@@ -37,7 +56,7 @@ function PieChartComponent() {
               backgroundColor: "#f9fafb",
               borderRadius: "0.5rem",
               border: "1px solid #e5e7eb",
-              fontSize: "0.8rem", // Smaller font for mobile
+              fontSize: "0.8rem",
             }}
           />
           <Legend
@@ -50,4 +69,4 @@ function PieChartComponent() {
   );
 }
 
-export default PieChartComponent;
+export default ConsentPieChart;
