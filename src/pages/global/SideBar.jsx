@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/indu-logo-transparent.png";
-
+import LogoutButton from "../../components/LogoutButton";
 function SideBar() {
   const [isOpen, setIsOpen] = useState(false); // sidebar toggle
   return (
@@ -17,7 +17,12 @@ function SideBar() {
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 6h16M4 12h16M4 18h16"
+          />
         </svg>
       </button>
       {/* Overlay for mobile */}
@@ -27,64 +32,69 @@ function SideBar() {
           onClick={() => setIsOpen(false)}
         />
       )}
-    <div className={`fixed h-full top-0 left-0 w-64 bg-gray-700 overflow-hidden shadow-outline z-20
+      <div
+        className={`fixed h-full top-0 left-0 w-64 bg-gray-700 overflow-hidden shadow-outline z-20
           transform transition-transform duration-300 ease-in-out
-          ${isOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}>
-      <img src={logo} className="my-5" />
-      {/* Brand logo */}
-      <nav>
-        <ul className="flex-1 p-3">
-          <li>
-            <NavLink
-              to="/dashboard/demographic"
-              className={({ isActive }) =>
-                `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
-                  isActive ? " bg-gray-800 font-bold" : ""
-                }`
-              }
-            >
-              Demographic Analytics
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/dashboard/consent-analytics"
-              className={({ isActive }) =>
-                `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
-                  isActive ? " bg-gray-800 font-bold" : ""
-                }`
-              }
-            >
-              Consent Analytics
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/dashboard/sales"
-              className={({ isActive }) =>
-                `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
-                  isActive ? " bg-gray-800 font-bold" : ""
-                }`
-              }
-            >
-              Sales
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/dashboard/feedback"
-              className={({ isActive }) =>
-                `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
-                  isActive ? " bg-gray-800 font-bold" : ""
-                }`
-              }
-            >
-              Feedback
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
-    </div>
+          ${isOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
+      >
+        <img src={logo} className="my-5" />
+        {/* Brand logo */}
+        <nav>
+          <ul className="flex-1 p-3">
+            <li>
+              <NavLink
+                to="/dashboard/demographic"
+                className={({ isActive }) =>
+                  `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
+                    isActive ? " bg-gray-800 font-bold" : ""
+                  }`
+                }
+              >
+                Demographic Analytics
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard/consent-analytics"
+                className={({ isActive }) =>
+                  `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
+                    isActive ? " bg-gray-800 font-bold" : ""
+                  }`
+                }
+              >
+                Consent Analytics
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard/sales"
+                className={({ isActive }) =>
+                  `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
+                    isActive ? " bg-gray-800 font-bold" : ""
+                  }`
+                }
+              >
+                Sales
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard/feedback"
+                className={({ isActive }) =>
+                  `block p-3 pl-6 mb-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out${
+                    isActive ? " bg-gray-800 font-bold" : ""
+                  }`
+                }
+              >
+                Feedback
+              </NavLink>
+            </li>
+            <li>
+              <LogoutButton />
+            </li>
+          </ul>
+        </nav>
+      </div>
     </>
   );
 }
