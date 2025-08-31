@@ -5,8 +5,10 @@ function BarChartComponent() {
   const [screenWidth, setScreenWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
   
   const demographicData = [
-    { ageRange: "young", male: 2, female: 1 },
-    { ageRange: "old", male: 1, female: 1 },
+    { ageRange: "teen", skinColor: "light" , male: 2, female: 1 },
+    { ageRange: "adult", skinColor: "light" ,male: 1, female: 1 },
+    { ageRange: "teen", skinColor: "dark" , male: 2, female: 1 },
+    { ageRange: "adult", skinColor: "dark" ,male: 1, female: 1 },
   ];
 
   useEffect(() => {
