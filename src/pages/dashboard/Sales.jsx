@@ -2,13 +2,9 @@ import { useState, useEffect } from "react";
 import BackButton from "../../components/BackButton";
 import { createSale } from "../../api/api";
 import { fetchSalesData } from "../../api/api";
+import ProductDropdown from "../../components/ProductDropdown";
+
 function Sales() {
-  //list of products
-  const products = [
-    { name: "Blue", price: 1200 },
-    { name: "Maroon-shirt", price: 200 },
-    { name: "Red-shirt", price: 350 },
-  ];
 
   //generate current date
   function getTodayPH() {
@@ -141,48 +137,7 @@ function Sales() {
           onSubmit={handleSubmit}
           className="flex flex-col sm:flex-row flex-wrap justify-evenly"
         >
-          <div className="flex flex-col sm:flex-row items-start sm:items-center p-3 w-full sm:w-auto">
-            <label className="block mr-0 sm:mr-5 mb-1 sm:mb-0">Product</label>
-            <select
-              name="product"
-              value={formData.product}
-              onChange={(e) => {
-                const selectedName = e.target.value;
-                if (selectedName === "") {
-                  setFormData({
-                    ...formData,
-                    product: "",
-                    price: 0,
-                  });
-                  return;
-                }
-                setFormData((prev) => ({
-                  ...prev,
-                  product: selectedName,
-                  price: 0,
-                }));
-                const selected = products.find((p) => p.name === selectedName);
-                if (selected) {
-                  setTimeout(() => {
-                    setFormData((prev) => ({
-                      ...prev,
-                      price: selected.price,
-                    }));
-                  }, 0);
-                }
-              }}
-              required
-              className="w-full sm:w-auto p-2 border rounded"
-            >
-              <option value="">-- Select a product --</option>
-              {products.map((p, id) => (
-                <option key={id} value={p.name}>
-                  {p.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
+          <ProductDropdown formData={formData} setFormData={setFormData} />
           <div className="flex flex-col sm:flex-row items-start sm:items-center p-3 w-full sm:w-auto">
             <label className="block mr-0 sm:mr-5 mb-1 sm:mb-0">Price</label>
             <input
