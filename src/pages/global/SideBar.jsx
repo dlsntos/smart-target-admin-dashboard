@@ -7,7 +7,7 @@ function SideBar() {
   return (
     <>
       <button
-        className="fixed top-4 left-4 z-20 p-2 bg-gray-700 text-white rounded-md lg:hidden"
+        className="fixed top-4 left-4 z-20 p-2 text-white rounded-md lg:hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
         <svg
